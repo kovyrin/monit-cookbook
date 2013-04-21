@@ -26,7 +26,7 @@ action :enable do
     owner "root"
     group "root"
     mode "644"
-    variables name: new_resource.name,
+    variables process_name: new_resource.name,
       pid_file: pid_file,
       start_command: start_command,
       stop_command: stop_command,
