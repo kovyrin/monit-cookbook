@@ -1,4 +1,4 @@
 check process <%= @process_name %> with pidfile <%= @pid_file %>
-  start program = <%= @start_command %>
-  stop program = <%= @stop_command %>
-  if <%= @restart_timeout_count %> restarts within <% @cycle_timeout_count %> cycles then timeout
+  start program = "<%= @start_command %>"
+  stop program = "<%= @stop_command %>"
+  if <%= @restart_timeout_count %> restarts within <%= @cycle_timeout_count %> cycles then timeout

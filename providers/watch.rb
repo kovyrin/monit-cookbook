@@ -18,9 +18,9 @@
 #
 
 action :enable do
-  pid_file = new_resouce.pid_file || "/var/run/#{new_resource.name}.pid"
-  start_command = new_resouce.start_command || "/etc/init.d/#{new_resource.name} start"
-  stop_command = new_resouce.stop_command || "/etc/init.d/#{new_resource.name} stop"
+  pid_file = new_resource.pid_file || "/var/run/#{new_resource.name}.pid"
+  start_command = new_resource.start_command || "/etc/init.d/#{new_resource.name} start"
+  stop_command = new_resource.stop_command || "/etc/init.d/#{new_resource.name} stop"
 
   template "/etc/monit/conf.d/#{new_resource.name}.conf" do
     owner "root"
@@ -33,7 +33,8 @@ action :enable do
       restart_timeout_count: new_resource.restart_timeout_count,
       cycle_timeout_count: new_resource.cycle_timeout_count
 
-    source 'monit_resource.conf.erb'
+    source "monit_resource.conf.erb"
+    cookbook "monit"
     notifies :restart, "service[monit]"
   end
 end

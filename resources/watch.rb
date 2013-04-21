@@ -23,7 +23,7 @@ default_action :enable
 
 attribute :name, :kind_of => String, :name_attribute => true
 attribute :pid_file, :kind_of => String
-attribute :start_command, :kind_of => String, :required => true
-attribute :stop_command, :kind_of => String, :required => true
+attribute :start_command, :kind_of => String
+attribute :stop_command, :kind_of => String
 attribute :restart_timeout_count, :kind_of => Integer, :default => 5
 attribute :cycle_timeout_count, :kind_of => Integer, :default => 5
