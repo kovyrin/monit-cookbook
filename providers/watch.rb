@@ -18,6 +18,10 @@
 #
 
 action :enable do
+  directory "/etc/monit/conf.d/" do
+    action :create
+  end
+
   pid_file = new_resource.pid_file || "/var/run/#{new_resource.name}.pid"
   start_command = new_resource.start_command || "/etc/init.d/#{new_resource.name} start"
   stop_command = new_resource.stop_command || "/etc/init.d/#{new_resource.name} stop"
