@@ -24,3 +24,6 @@ default[:monit][:address] = "localhost"
 default[:monit][:ssl] = false
 default[:monit][:cert] = "/etc/monit/monit.pem"
 default[:monit][:allow] = ["localhost"]
+
+default[:monit][:config_file] = "/etc/monitrc"
+default[:monit][:config_d_dir] = "/etc/monit.d"

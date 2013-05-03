@@ -19,7 +19,7 @@ set mailserver <%= @node[:monit][:mailserver][:host] %><%= " port #{@node[:monit
   password "<%= @node[:monit][:mailserver][:password] %>"<%= " #{@node[:monit][:mailserver][:password_suffix]}" if @node[:monit][:mailserver][:password_suffix] %>
 <% end %>
 
-set mail-format { 
+set mail-format {
   from: <%= @node[:monit][:mail_format][:from] %>
   subject: <%= @node[:monit][:mail_format][:subject] %>
   message: <%= @node[:monit][:mail_format][:message] %>
@@ -38,5 +38,4 @@ set httpd port <%= node[:monit][:port] %>
   pemfile <%= node[:monit][:cert] %>
 <% end %>
 
-include /etc/monit/conf.d/*.conf
-
+include <%= node[:monit][:config_d_dir] %>/*.conf

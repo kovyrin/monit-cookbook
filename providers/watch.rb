@@ -18,15 +18,18 @@
 #
 
 action :enable do
-  directory "/etc/monit/conf.d/" do
+  directory(node[:monit][:config_d_dir]) do
     action :create
+    mode 0700
+    owner 'root'
+    group 'root'
   end
 
   pid_file = new_resource.pid_file || "/var/run/#{new_resource.name}.pid"
   start_command = new_resource.start_command || "/etc/init.d/#{new_resource.name} start"
   stop_command = new_resource.stop_command || "/etc/init.d/#{new_resource.name} stop"
 
-  template "/etc/monit/conf.d/#{new_resource.name}.conf" do
+  template "#{node[:monit][:config_d_dir]}/#{new_resource.name}.conf" do
     owner "root"
     group "root"
     mode "644"
@@ -44,7 +47,7 @@ action :enable do
 end
 
 action :disable do
-  template "/etc/monit/conf.d/#{new_resource.name}.conf" do
+  template "#{node[:monit][:config_d_dir]}/#{new_resource.name}.conf" do
     action :delete
     notifies :restart, "service[monit]"
   end
