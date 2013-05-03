@@ -9,6 +9,8 @@ if platform?("ubuntu")
   end
 end
 
+service "monit"
+
 directory(node[:monit][:config_d_dir]) do
   owner  'root'
   group 'root'
@@ -27,6 +29,5 @@ end
 
 service "monit" do
   action [:enable, :start]
-  enabled true
-  supports [:start, :restart, :stop]
+  supports :restart => true
 end
